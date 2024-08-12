@@ -10,15 +10,15 @@ export const LoginPage = () => {
       <form action="#">
         <Input type={"city"} placeholder={"Город проживания"} />
         <Input type={"age"} placeholder={"Возраст"} />
-        <Input type={"e-mail"} placeholder={"электронная почта"} />
+        <Input type={"e-mail"} placeholder={"Адрес электронной почты"} />
         <Input type={"tel"} placeholder={"Номер телефона"} />
         <Input type={"password"} placeholder={"Пароль"}/>
-        <Button text={"Войти"}/>
+        <Button type={"button"} text={"Войти"}/>
       
       </form>
       <Link to="/">Забыли пароль?</Link>
       <RegistrationInfo 
-         liknText={"Зарегистрироваться"} 
+         linkText={"Зарегистрироваться"} 
          hasAccountText={"У вас нет аккаунта"} 
          authWithtext={"Войти с помощью"}
       />

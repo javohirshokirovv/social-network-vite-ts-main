@@ -1,4 +1,3 @@
-import { Repostliked } from "../Index";
 
 const Repostliked = () =>{
     return(

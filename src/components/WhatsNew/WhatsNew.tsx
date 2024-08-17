@@ -1,4 +1,3 @@
-import { WhatsNew } from "../Index";
 
 const WhatsNew = () =>{
     return(

@@ -1,4 +1,3 @@
-import { Postliked } from "../Index";
 
 const Postliked = () =>{
     return(

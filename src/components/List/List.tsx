@@ -1,78 +1,68 @@
-import { List } from "../Index";
+import { Heading } from "../Index";
+import { listData } from "./data"; 
+import ListItem from "./ListItem";
+import MusicItem from "./MusicItem";
 
-const List = () =>{
-    return(
-        <div className="List">
+const { subscribes, music, closeFriends } = listData; 
+
+interface ListProps {
+  listType: "subscribes" | "music" | "closeFriends";
+}
+
+const List = ({ listType }: ListProps) => {
+  const renderList = () => {
+    let items;
+    let title;
+
+    switch (listType) {
+      case "subscribes":
+        items = subscribes;
+        title = "Подписки";
+        break;
+      case "closeFriends":
+        items = closeFriends;
+        title = "Близкие друзья";
+        break;
+      case "music":
+        items = music;
+        title = "Music";
+        break;
+      default:
+        return null;
+    }
+
+    return (
+      <div className="List">
         <div className="List__title">
-          <h2>Подписки</h2>
-          <span className="count">123</span>
+          <Heading variant={"h2"} text={title} />
+          <span className="count">{items ? items.length : ""}</span>
         </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-1.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">N E W</p>
-            <p className="secondary__text">Развитие</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-2.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">Aesthetics</p>
-            <p className="secondary__text">Стиль</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-3.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">дом твоей эстетики</p>
-            <p className="secondary__text">Творчество</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-4.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">wailet</p>
-            <p className="secondary__text">Искусство</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-5.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">A W E S O M E</p>
-            <p className="secondary__text">Стиль</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-6.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">minimalism</p>
-            <p className="secondary__text">Фотография</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-7.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">Словарный запасE</p>
-            <p className="secondary__text">Литература</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
-        <div className="UserElem">
-          <img src="./img/profile/profile-img-8.jpeg" alt="User" />
-          <div className="user__description">
-            <p className="main__text">Look</p>
-            <p className="secondary__text">Мода</p>
-          </div>
-          <span className="Badge">3</span>
-        </div>
+        {items &&
+          items.map((elem, index) =>
+            listType === "music" ? (
+              <MusicItem
+                key={index}
+                imgUrl={elem.imgUrl}
+                alt={elem.alt}
+                mainText={elem.mainText}
+                secondaryText={elem.secondaryText}
+              />
+            ) : (
+              <ListItem
+                key={index}
+                imgUrl={elem.imgUrl}
+                alt={elem.alt}
+                mainText={elem.mainText}
+                secondaryText={elem.secondaryText}
+                badgeNumber={elem.badgeNumber}
+              />
+            )
+          )}
       </div>
     );
+  };
+
+  return renderList();
 };
 
 export default List;

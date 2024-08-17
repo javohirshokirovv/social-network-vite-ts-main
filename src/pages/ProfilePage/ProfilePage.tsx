@@ -1,8 +1,11 @@
+import { Header } from "../../components/UI/Header/Header";
 import "./ProfilePage.scss";
+import { SCProfilePage } from "./ProfilePage.styled";
 
 export const ProfilePage = () => {
   return (
-    <div className="ProfilePage">
+    <SCProfilePage>
+      <Header/>
       <aside className="LeftSide">
         <nav className="Navbar">
           <ul className="navbar__list">
@@ -831,6 +834,6 @@ export const ProfilePage = () => {
           </div>
         </div>
       </aside>
-    </div>
+    </SCProfilePage>
   );
 };

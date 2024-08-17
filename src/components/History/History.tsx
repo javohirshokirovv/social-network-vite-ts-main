@@ -1,4 +1,3 @@
-import { History } from "../Index";
 
 const History = () =>{
     return(

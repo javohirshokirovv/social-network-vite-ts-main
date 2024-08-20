@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const schema = yup.object({
   email: yup
     .string()
-    .email("Введите почту в правильном формате") // Fixed the misplaced period
+    .email("Введите почту в правильном формате") 
     .required("Обязательное поле"),
   password: yup
     .string()

@@ -1,8 +1,24 @@
 import { Header } from "../../components/UI/Header/Header";
+import { useGetUserQuery } from "../../store/api/authApi";
 import "./ProfilePage.scss";
 import { SCProfilePage } from "./ProfilePage.styled";
 
 export const ProfilePage = () => {
+
+  const {data, isError, isLoading, error, isSuccess} = useGetUserQuery("193");
+
+  //*data - Данные которые отправляет бэк
+  //*isError - Статус если ли ошибка или нет возвращает boolean значение (true/false)
+  //*isLoading - Статус загрузки или нет возвращает boolean значение (true/false)
+  //*error - Объект ошибки, если возвращает ошибку
+  //*isSuccess - Статус успешной загрузки или нет возвращает boolean (true/false)
+
+
+  console.log("user data:", data)
+
+
+
+
   return (
     <SCProfilePage>
       <Header/>

@@ -4,11 +4,14 @@ import * as yup from "yup";
 import Input from "./UI/Input/Input";
 import Button from "./UI/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../store/api/authApi";
+import { useUser } from "@clerk/clerk-react";
+import { useEffect } from "react";
 
 const schema = yup.object({
   email: yup
     .string()
-    .email("Введите почту в правильном формате") 
+    .email("Введите почту в правильном формате")
     .required("Обязательное поле"),
   password: yup
     .string()
@@ -31,14 +34,30 @@ const LoginForm = () => {
     defaultValues: {
       email: "",
       password: "",
-    }
+    },
   });
 
-
   const navigate = useNavigate();
+  const [loginUser, { data: loginData }] = useLoginUserMutation();
+  const { user } = useUser();
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    if (user || userId) {
+      navigate("/main");
+    }
+  }, [user, userId, navigate]);
+
+  useEffect(() => {
+    if (loginData) {
+      localStorage.setItem("userId", JSON.stringify(loginData.user_id));
+      navigate("/main");
+    }
+  }, [loginData, navigate]);
 
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-    navigate("/main")
+    loginUser({ email: data.email, password: data.password });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +91,5 @@ const LoginForm = () => {
     </form>
   );
 };
-
-}
 
 export default LoginForm;

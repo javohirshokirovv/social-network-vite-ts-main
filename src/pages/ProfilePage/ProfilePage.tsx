@@ -1,11 +1,16 @@
+import { useUser } from "@clerk/clerk-react";
 import { Header } from "../../components/UI/Header/Header";
 import { useGetUserQuery } from "../../store/api/authApi";
 import "./ProfilePage.scss";
 import { SCProfilePage } from "./ProfilePage.styled";
 
 export const ProfilePage = () => {
+  const userId = localStorage.getItem("userId");
 
-  const {data, isError, isLoading, error, isSuccess} = useGetUserQuery("193");
+  const { data } = useGetUserQuery("userId!");
+  const { user, isSignedIn } = useUser();
+
+  console.log('user', user)
 
   //*data - Данные которые отправляет бэк
   //*isError - Статус если ли ошибка или нет возвращает boolean значение (true/false)
@@ -268,7 +273,7 @@ export const ProfilePage = () => {
         <div className="user__block">
           <img src="./img/users/denis-frolov.jpeg" alt="Denis Frolov" />
           <div className="user__description">
-            <h1 className="user__name">Денис Фролов</h1>
+            <h1 className="user__name">{ isSignedIn ? user.fullName : data?.message.name }</h1>
             <div className="user__info">
               <div className="parameter">
                 <span className="key">Друзья</span>

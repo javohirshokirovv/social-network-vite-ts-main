@@ -1,25 +1,20 @@
-import "./LoginPage.scss";
-import { Input, Button, Heading, RegistrationInfo } from "../../components/Index";
+import { Heading, RegistrationInfo } from "../../components/Index";
 import { Link } from "react-router-dom";
+import { SCLoginPage } from "../LoginPage/LoginPage.styled";
+import LoginForm from "../../components/LoginForm";
 
-export const LoginPage = () => {
+export const RegistrationPage = () => {
   return (
-    <div className="LoginPage">
-      <Heading variant={"h1"} text={"Авторизация"}/>
-      <form action="#">
-        <Input type={"text"} placeholder={"Город проживания"} isError={false} errorMessage={""} />
-        <Input type={"number"} placeholder={"Возраст"} isError={false} errorMessage={""} />
-        <Input type={"email"} placeholder={"Адрес электронной почты"} isError={false} errorMessage={""} />
-        <Input type={"tel"} placeholder={"Номер телефона"} isError={false} errorMessage={""} />
-        <Input type={"password"} placeholder={"Пароль"} isError={false} errorMessage={""} />
-        <Button type={"submit"} text={"Войти"}/>
-      </form>
+    <SCLoginPage>
+      <Heading variant={"h1"} text={"Регистрация"}/>
+      <LoginForm />
       <Link to="/">Забыли пароль?</Link>
       <RegistrationInfo 
-         linkText={"Зарегистрироваться"} 
-         hasAccountText={"У вас нет аккаунта"} 
-         authWithtext={"Войти с помощью"}
+         navigatePath="/"
+         linkText={"Войти"} 
+         hasAccountText={"У вас уже есть аккаунт?"} 
+         authWithtext={"Зарегистрироваться с помошью"}
       />
-    </div>
+    </SCLoginPage>
   );
 };

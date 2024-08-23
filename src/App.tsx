@@ -4,35 +4,39 @@ import { MainPage } from "./pages/MainPage/MainPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/theme";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage";
 
-
-const router = createBrowserRouter ([
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage/>
+    element: <LoginPage />,
   },
   {
-    path: "/main-page",
-    element: <MainPage/>
+    path: "/main",
+    element: <MainPage />,
   },
   {
-    path: "/profile-page",
-    element: <ProfilePage/>
+    path: "/profile",
+    element: <ProfilePage />,
   },
-])
+  {
+    path: "/registration",
+    element: <RegistrationPage />,
+  },
+]);
 
 function App() {
   return (
     <Provider store={store}>
-    <ThemeProvider theme={theme}>
-    <div className="App">
-        <div className="container">
-          <RouterProvider router={router}/>     
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <div className="container">
+            <RouterProvider router={router} />
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
     </Provider>
   );
 }

@@ -9,7 +9,8 @@ export const LoginPage = () => {
       <Heading variant={"h1"} text={"Авторизация"} />
       <LoginForm/>
       <Link to="/">Забыли пароль?</Link>
-      <RegistrationInfo 
+      <RegistrationInfo
+        navigatePath="/registration" 
          linkText={"Зарегистрироваться"} 
          hasAccountText={"У вас нет аккаунта"} 
          authWithtext={"Войти с помощью"}

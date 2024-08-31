@@ -20,10 +20,7 @@ export const ProfilePage = () => {
 
 
   console.log("user data:", data)
-
-
-
-
+  
   return (
     <SCProfilePage>
       <Header/>

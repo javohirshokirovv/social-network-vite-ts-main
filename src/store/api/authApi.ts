@@ -6,7 +6,7 @@ import type {
   IRegisterUserPayload,
   IRegisterUserResponse,
 } from "./types";
-import { baseUrl } from "../../utils/baseUrl";
+import { baseUrl } from "../../utils/constants";
 
 export const authApi = createApi({
   reducerPath: "authApi",

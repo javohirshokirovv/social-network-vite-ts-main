@@ -1,9 +1,15 @@
 import { Navbar } from "../../components/Index";
 import List from "../../components/List/List";
+import Post from "../../components/Post/Post";
 import { Header } from "../../components/UI/Header/Header";
+import { useGetAllPostsQuery } from "../../store/api/postApi";
 import { SCMainPage } from "./MainPage.styled";
 
 export const MainPage = () => {
+  const { data } = useGetAllPostsQuery(null);
+
+  console.log('data', data)
+
   return (
     <SCMainPage>
       <Header />
@@ -156,6 +162,8 @@ export const MainPage = () => {
             </div>
           </div>
         </div>
+
+        <Post name={""} date={""} postText={""} />
         <div className="Post _liked _marked">
           <div className="UserElem">
             <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
@@ -291,8 +299,9 @@ export const MainPage = () => {
       </main>
       <aside className="RightSide">
         <List listType="closeFriends" />
-        <List listType="music"/>
+        <List listType="music" />
       </aside>
     </SCMainPage>
   );
 };
+
